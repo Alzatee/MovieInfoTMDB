@@ -1,0 +1,24 @@
+.movie-card {
+    .movie-card-info {
+        background-color: #141E27;
+        padding: 10px;
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+    }
+
+    h3{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    img {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        cursor: pointer;
+    }
+    
+    .fa-star{
+        margin-right: 2px;
+        color: #edb867;
+    }
+}

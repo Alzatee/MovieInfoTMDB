@@ -1,6 +1,7 @@
 export const environment = {
   env: "",
   apiBaseUrl: "",
-  apiKey: ""
+  apiKey: "",
+  movieImageUrl: "",
 };
 

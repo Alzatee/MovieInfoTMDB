@@ -1,0 +1,49 @@
+@if(movies.length > 0) {
+    <section class="container movie-list-container">
+
+        <div class="row">
+            <h1>Cartelera</h1>
+            <div class="col">
+                <gml-slideshow [movies]="movies"></gml-slideshow>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <h1>Películas</h1>
+            <div class="col">
+                <gml-movie-poster [movies]="movies"></gml-movie-poster>
+            </div>
+        </div>
+
+
+
+
+        <!-- Paginador -->
+        <div class="row">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="prevPage()" aria-label="Anterior">
+                            <span aria-hidden="true">&laquo;</span>
+                        </button>
+                    </li>
+                    <!-- Mostrar un rango de páginas alrededor de la página actual -->
+                    <li *ngFor="let page of getPageRange()" class="page-item" [class.active]="currentPage === page">
+                        <button class="page-link" (click)="goToPage(page)">
+                            {{ page }}
+                        </button>
+                    </li>
+                    <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="nextPage()" aria-label="Siguiente">
+                            <span aria-hidden="true">&raquo;</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+
+
+    </section>
+}

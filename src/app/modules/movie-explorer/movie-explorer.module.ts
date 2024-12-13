@@ -2,17 +2,23 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { MovieExplorerRoutingModule } from './movie-explorer-routing.module';
 
-import { MovieSearchComponent } from './movie-search/movie-search.component';
-import { MovieDetailComponent } from './movie-detail/movie-detail.component';
-import { MovieListComponent } from './movie-list/movie-list.component';
-import { PaginationComponent } from './pagination/pagination.component';
+import { SearchComponent } from './components/search/search.component';
+import { MovieDetailComponent } from './pages/movie-detail/movie-detail.component';
+import { MovieListComponent } from './pages/movie-list/movie-list.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { SlideshowComponent } from './components/slideshow/slideshow.component';
+import { MoviePosterComponent } from './components/movie-poster/movie-poster.component';
+import { PosterPipe } from '@core/pipes/poster.pipe';
 
 @NgModule({
   declarations: [
-    MovieSearchComponent,
+    SearchComponent,
+    SlideshowComponent,
+    PaginationComponent,
+    MoviePosterComponent,
     MovieListComponent,
     MovieDetailComponent,
-    PaginationComponent
+    PosterPipe
   ],
   imports: [
     MovieExplorerRoutingModule,

@@ -1,0 +1,33 @@
+<div class="row">
+    @for(movie of movies; track movie.id; let index = $index) {
+
+        <div class="movie-card col-md-3 mb-5">
+            <img [src]="movie.poster_path | poster" class="img-thumbnail img-fluid cursor" (click)="onMovieClick(movie)">
+
+            <div class="movie-card-info">
+                <div class="text-white">
+                    <h3 class="mt-2">{{movie.title}}</h3>
+                    <p><span>{{movie.release_date | date: 'dd/MM/yyyy'}}</span></p>
+                    <p><span>{{movie.overview | slice:0:100}}...</span></p>
+    
+                    <div class="row align-items-center">
+                        <div class="col-10">
+                            @if (movie.vote_average) {
+                                <div>
+                                    <div class="d-flex">
+                                        <i *ngFor="let star of getStars(movie.vote_average)" class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-2">
+                            {{movie.vote_average | number:'1.1-2'}}
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

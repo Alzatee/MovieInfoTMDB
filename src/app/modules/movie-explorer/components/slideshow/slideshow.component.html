@@ -1,0 +1,22 @@
+<div class="swiper">
+    <div class="swiper-wrapper">
+        @for(movie of movies; track movie.id; let index = $index) {
+            <div class="swiper-slide" [ngStyle]="{
+                    'background-size': 'cover', 
+                    'background-image': 'url(' + movieImageUrl + movie.backdrop_path + ')'}">
+
+                <div class="movie-description">
+                    <h3>{{movie.title}}</h3>
+                    <button class="btn btn-outline-light btn-sm">Detalle</button>
+                    <p>{{movie.overview | slice:0:130}}...</p>
+                </div>
+
+            </div>
+        }
+    </div>
+
+    <div class="swiper-pagination"></div>
+
+    <div (click)="onSlidePrev()" class="swiper-button-prev"></div>
+    <div (click)="onSlideNext()" class="swiper-button-next"></div>
+  </div>

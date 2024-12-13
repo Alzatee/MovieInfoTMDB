@@ -122,6 +122,8 @@ Estos Alias nos permiten acceder en las importaciones a carpetas de interés muc
 - SweetAlert2 (Se utiliza para la gestión de modales personalizadas para el proyecto).
 [SweetAlert2 Documentación](https://sweetalert2.github.io/) 
 
+[Swiper](https://swiperjs.com/get-started)
+
 [gh-pages](https://www.npmjs.com/package/gh-pages) Para gestionar el deploy a Github pages.
 
 
