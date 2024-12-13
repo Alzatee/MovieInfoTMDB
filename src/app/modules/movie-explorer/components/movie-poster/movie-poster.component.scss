@@ -1,3 +1,5 @@
+@import 'variables';
+
 .movie-card {
     .movie-card-info {
         background-color: #141E27;
@@ -7,7 +9,7 @@
 
         .fa-star{
             margin-right: 2px;
-            color: #edb867;
+            color: $star-color;
         }
     }
     

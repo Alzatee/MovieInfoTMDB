@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Cast } from '@core/models/interface/credits.interface';
 import { MovieDetails } from '@core/models/interface/movie-details.interface';
 import { TmdbService } from '@core/services/tmdb-service';
+import { environment } from '@environments/environment';
 import { UtilService } from '@shared/util/util.service';
 import { combineLatest } from 'rxjs';
 
@@ -15,6 +16,7 @@ import { combineLatest } from 'rxjs';
 export class MovieDetailComponent implements OnInit {
   pelicula?: MovieDetails;
   cast: Cast[] = [];
+  movieImageUrl: string = environment.movieImageUrl;
   
   constructor(
     private activatedRoute:ActivatedRoute, 

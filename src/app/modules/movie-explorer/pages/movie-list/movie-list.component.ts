@@ -28,6 +28,7 @@ export class MovieListComponent implements OnInit {
 
   searchHandleEvent(eventData: string): void {
     this.text = eventData;
+    this.currentPage = 1;
     this.validateMovieRetrieval();
   }
 
