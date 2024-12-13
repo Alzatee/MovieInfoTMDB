@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AppTexts } from '@core/models/enums/app-text';
 import { Movie } from '@core/models/interface/movies.interface';
 import { environment } from '@environments/environment';
 import { UtilService } from '@shared/util/util.service';
@@ -11,6 +12,7 @@ import Swiper from 'swiper';
   styleUrl: './slideshow.component.scss'
 })
 export class SlideshowComponent implements OnInit, AfterViewInit {
+  appTexts = AppTexts;
   @Input() movies?: Movie[];
   mySwiper?: Swiper;
   movieImageUrl: string = environment.movieImageUrl;

@@ -5,6 +5,7 @@
     background: white;
     font-family: 'Roboto', serif;
     height: 100vh;
+    color: $dark-color;
 }
 
 .four_zero_four_bg {
@@ -16,4 +17,7 @@
 .page-404 img { width: 100%; }
 .four_zero_four_bg h1 { font-size: 80px; }
 .contant_box_404 { margin-top: -50px; }
-.contant_box_404 h3 { font-weight: 100;} 
+.contant_box_404 h3 { 
+    font-weight: 100;
+    font-size: 20px !important;
+} 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AppTexts } from '@core/models/enums/app-text';
 import { Movie, MoviesResponse } from '@core/models/interface/movies.interface';
 import { TmdbService } from '@core/services/tmdb-service';
 import { UtilService } from '@shared/util/util.service';
@@ -11,6 +12,7 @@ import { UtilService } from '@shared/util/util.service';
   styleUrl: './movie-list.component.scss'
 })
 export class MovieListComponent implements OnInit {
+  appTexts = AppTexts;
   movies: Movie[] = [];
   text = '';
   noMovie = '';

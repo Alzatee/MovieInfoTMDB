@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppTexts } from '@core/models/enums/app-text';
 import { ErrorMessages } from '@core/models/enums/error-messages';
 
 @Component({
@@ -10,4 +12,11 @@ import { ErrorMessages } from '@core/models/enums/error-messages';
 })
 export class NotFoundPageComponent {
   errorMessages = ErrorMessages;
+  appTexts = AppTexts;
+
+  constructor(private router: Router) {}
+
+  goToHome(): void {
+    this.router.navigate(['/']);
+  }
 }

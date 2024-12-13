@@ -6,14 +6,14 @@
 
     @if (movies.length > 0) {
         <div class="row">
-            <h1>Cartelera</h1>
+            <h1> {{appTexts.MovieScheduleText}} </h1>
             <div class="col">
                 <gml-slideshow [movies]="movies"></gml-slideshow>
             </div>
         </div>
 
         <div class="row mt-5">
-            <h1>Películas</h1>
+            <h1> {{appTexts.MoviesText}} </h1>
             <div class="col">
                 <gml-movie-poster [movies]="movies"></gml-movie-poster>
             </div>

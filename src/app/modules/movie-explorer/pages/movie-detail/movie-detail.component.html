@@ -7,7 +7,7 @@
             </div>
         
             <div class="col-md-6">
-                <h3 class="movie-title">{{pelicula.title}}</h3>
+                <h3 class="movie-title"> {{pelicula.title}} </h3>
         
                 <div class="row mt-3">
                     <div class="col-10 text-white">
@@ -25,11 +25,13 @@
                     <div class="container">
                         <div class="col text-white text-justify-content">
                             @if (pelicula.overview) {
-                                <p class="sinopsis-text">{{pelicula.overview}}</p>
+                                <p class="sinopsis-text"> {{pelicula.overview}} </p>
                             } @else {
-                                <p class="sinopsis-text">No hay sinopsis sobre esta película.</p>
+                                <p class="sinopsis-text"> {{appTexts.SynopsisNotFoundText}} </p>
                             }
-                            <p class="text-warning">Fecha de estreno: {{pelicula.release_date | date:'dd/MM/yyyy'}} </p>
+                            <p class="text-warning"> 
+                                {{appTexts.ReleaseDateText}}: {{pelicula.release_date | date:'dd/MM/yyyy'}} 
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -37,7 +39,7 @@
                 @if (cast.length > 0) {
                     <div class="row mt-3">
                         <div class="col-12">
-                            <h3 class="cast-text">Reparto</h3>
+                            <h3 class="cast-text"> {{appTexts.CastText}} </h3>
                     
                             <div class="col">
                                 <gml-cast-slide-show [cast]="cast"></gml-cast-slide-show>
@@ -48,7 +50,9 @@
 
                 <div class="row mt-3">
                     <div class="col mb-2">
-                        <button class="btn btn-outline-info float-right" (click)="regresar()">Volver al inicio</button>
+                        <button class="btn btn-outline-info float-right" (click)="regresar()"> 
+                            {{appTexts.NavigateToHome}} 
+                        </button>
                     </div>
                 </div>
             </div>
