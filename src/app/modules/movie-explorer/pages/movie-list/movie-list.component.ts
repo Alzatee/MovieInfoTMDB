@@ -15,6 +15,9 @@ export class MovieListComponent implements OnInit {
   totalPages: number = 1;
   totalResults: number = 0;
 
+  // Cache para almacenar películas cargadas
+  loadedPages: Map<number, Movie[]> = new Map();
+
   constructor(private tmdbService: TmdbService) {}
 
   ngOnInit(): void {
@@ -22,23 +25,34 @@ export class MovieListComponent implements OnInit {
   }
 
   loadMovies(): void {
-    this.tmdbService.getMovieList(this.currentPage).subscribe({
-      next: (response: MoviesResponse) => {
-        this.movies = response.results;
-        this.totalPages = response.total_pages;
-        this.totalResults = response.total_results;  
-      },
-      error: (error) => {
-        const errorMessage = 'Error loading characters: ' + error.message;
-        console.error(errorMessage);
-      }
-    });
+    // Verificar si la página ya fue cargada
+    if (this.loadedPages.has(this.currentPage)) {
+      // Si la página ya está en el cache, simplemente la usamos
+      this.movies = this.loadedPages.get(this.currentPage)!;
+    } else {
+      // Si no está en el cache, realizamos la solicitud
+      this.tmdbService.getMovieList(this.currentPage).subscribe({
+        next: (response: MoviesResponse) => {
+          this.movies = response.results;
+          this.totalPages = response.total_pages;
+          this.totalResults = response.total_results;
+
+          // Guardar la página en el cache
+          this.loadedPages.set(this.currentPage, this.movies);
+        },
+        error: (error) => {
+          const errorMessage = 'Error loading movies: ' + error.message;
+          console.error(errorMessage);
+        }
+      });
+    }
   }
 
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.loadMovies();
+      this.scrollToTop();
     }
   }
 
@@ -46,6 +60,7 @@ export class MovieListComponent implements OnInit {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.loadMovies();
+      this.scrollToTop();
     }
   }
 
@@ -53,17 +68,20 @@ export class MovieListComponent implements OnInit {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.loadMovies();
+      this.scrollToTop();
     }
   }
 
-  // Método para obtener un rango de páginas a mostrar
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   getPageRange(): number[] {
     const range: number[] = [];
     const maxPagesToShow = 5; // Cuántas páginas mostrar
     let startPage = Math.max(this.currentPage - Math.floor(maxPagesToShow / 2), 1);
     let endPage = Math.min(startPage + maxPagesToShow - 1, this.totalPages);
 
-    // Si el rango excede el total de páginas, ajustamos el rango
     if (endPage - startPage < maxPagesToShow - 1) {
       startPage = Math.max(endPage - maxPagesToShow + 1, 1);
     }
@@ -74,4 +92,5 @@ export class MovieListComponent implements OnInit {
 
     return range;
   }
+
 }
