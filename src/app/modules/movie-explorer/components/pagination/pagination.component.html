@@ -1,1 +1,31 @@
-<p>pagination works!</p>
+<div class="row">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+                <button class="page-link" (click)="goToPage(1)" aria-label="Primera página" title="Primera página">
+                    <i class="fas fa-angle-double-left"></i>
+                </button>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === 1">
+                <button class="page-link" (click)="prevPage()" aria-label="Anterior" title="Página anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </li>
+            <li *ngFor="let page of getPageRange()" class="page-item" [class.active]="currentPage === page">
+                <button class="page-link" (click)="goToPage(page)">
+                    {{ page }}
+                </button>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <button class="page-link" (click)="nextPage()" aria-label="Siguiente" title="Siguiente página">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <button class="page-link" (click)="goToPage(totalPages)" aria-label="Última página" title="Última página">
+                    <i class="fas fa-angle-double-right"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>

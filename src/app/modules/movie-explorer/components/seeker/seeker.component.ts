@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AppTexts } from '@core/models/enums/app-text';
 import { Subject } from 'rxjs';
-import { debounceTime, switchMap } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'gml-seeker',
