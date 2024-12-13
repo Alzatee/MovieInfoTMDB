@@ -16,7 +16,9 @@ export class UtilService {
   constructor(private router: Router) { }
 
   scrollToTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 300);
   }
 
   viewDetailMovie(movie: Movie) {
