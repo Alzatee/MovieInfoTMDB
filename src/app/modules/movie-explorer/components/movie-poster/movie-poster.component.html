@@ -2,8 +2,13 @@
     @for(movie of movies; track movie.id; let index = $index) {
 
         <div class="movie-card col-md-3 mb-5">
-            <img [src]="movie.poster_path | poster" class="img-thumbnail img-fluid cursor" 
-            (click)="onMovieClick(movie)" alt="Imagen de la película {{movie.title}}" loading="lazy">
+
+            <div class="card-img" (click)="onMovieClick(movie)">
+                <p class="title-card">{{ appTexts.DetailText | titlecase }}</p>
+                <p class="subtitle-card">{{ appTexts.ViewText }}</p>
+                <img [src]="movie.poster_path | poster" class="img-thumbnail img-fluid cursor img-card" 
+                alt="Imagen de la película {{movie.title}}" loading="lazy">
+            </div>
 
             <div class="movie-card-info">
                 <div class="text-white">

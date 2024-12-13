@@ -6,5 +6,6 @@ export enum AppTexts {
     ReleaseDateText = "Fecha de estreno",
     CastText = "Reparto",
     MovieScheduleText = "Cartelera",
-    MoviesText = "Películas"
+    MoviesText = "Películas",
+    ViewText = "Ver"
 }
