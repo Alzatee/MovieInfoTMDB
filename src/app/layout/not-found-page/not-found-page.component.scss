@@ -5,17 +5,19 @@
     background: white;
     font-family: 'Roboto', serif;
     height: 100vh;
-    color: $dark-color;
+    color: $dark-color !important;
 }
 
 .four_zero_four_bg {
-    background-image: url('/images/404/not-found-page.gif');
     height: 400px;
     background-position: center;
 }
 
 .page-404 img { width: 100%; }
-.four_zero_four_bg h1 { font-size: 80px; }
+.four_zero_four_bg h1 { 
+    font-size: 80px !important;
+    color: $dark-color !important; 
+}
 .contant_box_404 { margin-top: -50px; }
 .contant_box_404 h3 { 
     font-weight: 100;

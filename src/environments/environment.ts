@@ -3,5 +3,6 @@ export const environment = {
   apiBaseUrl: "",
   apiKey: "",
   movieImageUrl: "",
+  notFoundPageImgUrl: ""
 };
 
