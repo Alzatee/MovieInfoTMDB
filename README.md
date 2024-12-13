@@ -128,5 +128,7 @@ Estos Alias nos permiten acceder en las importaciones a carpetas de interés muc
 
 
 ## Recursos y utilidades
+[The Movie Database (TMDB)](https://developer.themoviedb.org/docs/authentication-application) - Se utilizó esta base de datos en el proyecto.
+
 -**Existe un archivo en shareds de util.service para codigo reutilizable.**
 -Los colores definidos para la identidad del proyecto en: [assets/scss/_variables.scss]
