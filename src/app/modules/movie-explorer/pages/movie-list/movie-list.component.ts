@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Movie, MoviesResponse } from '@core/models/interface/movies.interface';
 import { TmdbService } from '@core/services/tmdb-service';
 import { UtilService } from '@shared/util/util.service';
@@ -11,45 +12,72 @@ import { UtilService } from '@shared/util/util.service';
 })
 export class MovieListComponent implements OnInit {
   movies: Movie[] = [];
+  text = '';
+  noMovie = '';
+  
   currentPage: number = 1;
   pageSize: number = 20;
   totalPages: number = 1;
   totalResults: number = 0;
 
-  loadedPages: Map<number, Movie[]> = new Map();
-
-  constructor(private tmdbService: TmdbService, private utilService: UtilService) {}
+  constructor(private tmdbService: TmdbService, private utilService: UtilService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.loadMovies();
   }
 
-  loadMovies(): void {
-    // Verificar si la página ya fue cargada y si está en caché usar dicha página, d elo contrario hacer la consulta.
-    if (this.loadedPages.has(this.currentPage)) {
-      this.movies = this.loadedPages.get(this.currentPage)!;
-    } else {
-      this.tmdbService.getMovieList(this.currentPage).subscribe({
-        next: (response: MoviesResponse) => {
-          this.movies = response.results;
-          this.totalPages = response.total_pages;
-          this.totalResults = response.total_results;
+  searchHandleEvent(eventData: string): void {
+    this.text = eventData;
+    this.validateMovieRetrieval();
+  }
 
-          // Guardar la página en el cache
-          this.loadedPages.set(this.currentPage, this.movies);
-        },
-        error: (error) => {
-          const errorMessage = 'Error loading movies: ' + error.message;
-          console.error(errorMessage);
-        }
-      });
+  validateMovieRetrieval(): void {
+    if (this.text) {
+      this.loadSearchMovies();
+    } else {
+      this.loadMovies();
     }
+  }
+
+  loadSearchMovies(): void {
+    this.tmdbService.searchMovie(this.text, this.currentPage).subscribe({
+      next: (response: MoviesResponse) => {
+        this.movies = [];
+        this.movies = response.results;
+        this.totalPages = response.total_pages;
+        this.totalResults = response.total_results;
+
+        if (this.movies.length == 0) {
+          console.log('No se encontro la pelicula');
+          this.noMovie = '😌 No se encontró la pelicula';
+        }
+      },
+      error: (error) => {
+        const errorMessage = 'Error loading movies: ' + error.message;
+        console.error(errorMessage);
+      },
+    });
+  }
+
+  loadMovies(): void {
+    this.tmdbService.getMovieList(this.currentPage).subscribe({
+      next: (response: MoviesResponse) => {
+        this.movies = [];
+        this.movies = response.results;
+        this.totalPages = response.total_pages;
+        this.totalResults = response.total_results;
+      },
+      error: (error) => {
+        const errorMessage = 'Error loading movies: ' + error.message;
+        console.error(errorMessage);
+      }
+    });
   }
 
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
-      this.loadMovies();
+      this.validateMovieRetrieval();
       this.utilService.scrollToTop();
     }
   }
@@ -57,7 +85,7 @@ export class MovieListComponent implements OnInit {
   prevPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.loadMovies();
+      this.validateMovieRetrieval();
       this.utilService.scrollToTop();
     }
   }
@@ -65,7 +93,7 @@ export class MovieListComponent implements OnInit {
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
-      this.loadMovies();
+      this.validateMovieRetrieval();
       this.utilService.scrollToTop();
     }
   }

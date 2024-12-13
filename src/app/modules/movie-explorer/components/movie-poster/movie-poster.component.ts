@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Movie } from '@core/models/interface/movies.interface';
+import { UtilService } from '@shared/util/util.service';
 
 @Component({
   selector: 'gml-movie-poster',
@@ -11,7 +11,7 @@ import { Movie } from '@core/models/interface/movies.interface';
 export class MoviePosterComponent {
   @Input() movies?: Movie[];
 
-  constructor(private router: Router){}
+  constructor(private utilService: UtilService) {}
 
   getStars(voteAverage:number){
     const starsCount = Math.floor(voteAverage);
@@ -19,7 +19,7 @@ export class MoviePosterComponent {
   }
 
   onMovieClick(movie: Movie) {
-    this.router.navigate(['movie-explorer', 'movie-detail', movie.id]);
+    this.utilService.viewDetailMovie(movie);
   }
 
 }

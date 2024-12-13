@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Movie } from '@core/models/interface/movies.interface';
 import { environment } from '@environments/environment';
+import { UtilService } from '@shared/util/util.service';
 import Swiper from 'swiper';
 
 @Component({
@@ -15,11 +15,9 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
   mySwiper?: Swiper;
   movieImageUrl: string = environment.movieImageUrl;
 
-  constructor(private router: Router) {}
+  constructor(public utilService: UtilService) {}
 
-  ngOnInit(): void {
-    console.log('aqui', this.movies);
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.mySwiper = new Swiper('.swiper', {

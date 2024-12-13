@@ -1,0 +1,40 @@
+.navbar {
+    .form-inline {
+        width: 100%;
+        input.form-control {
+            background-color: transparent;
+            color: #f3f3f3;
+            border: none;
+            border-bottom: 1px solid #f3f3f3;
+            border-radius: 0px;
+            font-size: 20px;
+            &::placeholder {
+                color: #555;
+            }
+            &:focus {
+                box-shadow: none;
+                outline: none;
+            }
+        }
+    }
+
+    .form-inline {
+        .input-container {
+            position: relative;
+            .form-control {
+                padding-left: 30px;
+            }
+            .search-icon {
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                transform: translateY(-50%);
+                color: #f3f3f3;
+            }
+            .form-control:focus + .search-icon {
+                color: #28a745;
+            }
+        }
+
+    }
+}

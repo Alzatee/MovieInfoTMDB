@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { MovieExplorerRoutingModule } from './movie-explorer-routing.module';
 
-import { SearchComponent } from './components/search/search.component';
+import { SeekerComponent } from './components/seeker/seeker.component';
 import { MovieDetailComponent } from './pages/movie-detail/movie-detail.component';
 import { MovieListComponent } from './pages/movie-list/movie-list.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
@@ -12,7 +12,7 @@ import { PosterPipe } from '@core/pipes/poster.pipe';
 
 @NgModule({
   declarations: [
-    SearchComponent,
+    SeekerComponent,
     SlideshowComponent,
     PaginationComponent,
     MoviePosterComponent,
@@ -23,6 +23,9 @@ import { PosterPipe } from '@core/pipes/poster.pipe';
   imports: [
     MovieExplorerRoutingModule,
     SharedModule
+  ], 
+  exports: [
+    SeekerComponent
   ]
 })
 export class MovieExplorerModule { }

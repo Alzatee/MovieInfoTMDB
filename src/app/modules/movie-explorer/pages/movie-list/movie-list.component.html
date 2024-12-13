@@ -1,6 +1,10 @@
-@if(movies.length > 0) {
-    <section class="container movie-list-container">
+<section class="container movie-list-container">
 
+    <div class="row">
+        <gml-seeker (searchText)="searchHandleEvent($event)"></gml-seeker>
+    </div>
+
+    @if(movies.length > 0) {
         <div class="row">
             <h1>Cartelera</h1>
             <div class="col">
@@ -48,6 +52,8 @@
                 </ul>
             </nav>
         </div>
+    } @else {
+        <h3 class="text-warning" *ngIf="noMovie"><strong>{{noMovie}}</strong></h3>
+    }
 
-    </section>
-}
+</section>

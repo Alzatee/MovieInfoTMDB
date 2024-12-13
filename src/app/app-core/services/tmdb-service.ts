@@ -15,5 +15,9 @@ export class TmdbService {
   getMovieList(page: number): Observable<MoviesResponse> {
     return this.http.get<MoviesResponse>(`${this.baseUrl}/movie/now_playing?language=es-ES&page=${page}`);
   }
+
+  searchMovie(text: string, page: number): Observable<MoviesResponse>  {
+    return this.http.get<MoviesResponse>(`${this.baseUrl}/search/movie?query=${text}&language=es-ES&page=${page}`);
+  }
   
 }
