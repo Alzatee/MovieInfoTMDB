@@ -1,0 +1,21 @@
+<div class="swiper">
+    <div class="swiper-wrapper">
+
+        @for(actor of cast; track actor.id; let index = $index) {
+            <div class="swiper-slide text-white text-center">
+                @if (actor.profile_path) {
+                    <ng-container>
+                        <img [src]="actor.profile_path | poster" class="img-thumbnail" alt="foto del actor">
+                     </ng-container>
+                } @else {
+                    <ng-container>
+                        <img src="images/image-not-available.jpg" class="img-thumbnail" alt="foto del actor">
+                     </ng-container>
+                }
+       
+                {{actor.name}}
+            </div>
+        }
+
+    </div>
+</div>

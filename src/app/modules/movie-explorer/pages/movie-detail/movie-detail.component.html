@@ -1,1 +1,56 @@
-<p>movie-detail works!</p>
+<section class="container container-movie-details">
+    @if (pelicula) {
+        <div class="row justify-content-center align-items-center content-movie-details">
+            <div class="col-md-6">
+                <img [src]="pelicula.poster_path | poster " class="img-thumbnail">
+            </div>
+        
+            <div class="col-md-6">
+                <h3 class="movie-title">{{pelicula.title}}</h3>
+        
+                <div class="row mt-3">
+                    <div class="col-10 text-white">
+                        @if (pelicula.vote_average) {
+                            <div class="stars-container">
+                                <p><i *ngFor="let star of utilService.getStars(pelicula.vote_average)" class="fas fa-star"></i>
+                                    {{pelicula.vote_average | number:'1.1-2'}}
+                                </p>
+                            </div>
+                        }
+                    </div>
+                </div>
+        
+                <div class="row mt-3">
+                    <div class="container">
+                        <div class="col text-white text-justify-content">
+                            @if (pelicula.overview) {
+                                <p class="sinopsis-text">{{pelicula.overview}}</p>
+                            } @else {
+                                <p class="sinopsis-text">No hay sinopsis sobre esta película</p>
+                            }
+                            <p class="text-warning">Fecha de estreno: {{pelicula.release_date | date:'dd/MM/yyyy'}} </p>
+                        </div>
+                    </div>
+                </div>
+
+                @if (cast.length > 0) {
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h3 class="cast-text">Reparto</h3>
+                    
+                            <div class="col">
+                                <gml-cast-slide-show [cast]="cast"></gml-cast-slide-show>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="row mt-3">
+                    <div class="col mb-2">
+                        <button class="btn btn-outline-info float-right" (click)="regresar()">Volver al inicio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>

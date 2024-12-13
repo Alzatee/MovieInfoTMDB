@@ -21,6 +21,9 @@
     .form-inline {
         .input-container {
             position: relative;
+            i {
+                -webkit-text-stroke: 1px #121B24;
+            }
             .form-control {
                 padding-left: 30px;
             }

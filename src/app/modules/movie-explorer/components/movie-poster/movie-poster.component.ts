@@ -11,12 +11,7 @@ import { UtilService } from '@shared/util/util.service';
 export class MoviePosterComponent {
   @Input() movies?: Movie[];
 
-  constructor(private utilService: UtilService) {}
-
-  getStars(voteAverage:number){
-    const starsCount = Math.floor(voteAverage);
-    return Array(starsCount).fill(0);
-  }
+  constructor(public utilService: UtilService) {}
 
   onMovieClick(movie: Movie) {
     this.utilService.viewDetailMovie(movie);

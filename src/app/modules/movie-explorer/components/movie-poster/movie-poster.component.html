@@ -16,7 +16,7 @@
                             @if (movie.vote_average) {
                                 <div>
                                     <div class="d-flex">
-                                        <i *ngFor="let star of getStars(movie.vote_average)" class="fas fa-star"></i>
+                                        <i *ngFor="let star of utilService.getStars(movie.vote_average)" class="fas fa-star"></i>
                                     </div>
                                 </div>
                             }

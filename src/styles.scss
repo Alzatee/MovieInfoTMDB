@@ -12,4 +12,24 @@ body {
   font-weight: 400;
   background-color: $bg-color !important;
   color: light-color !important;
+
+  h1 {
+    color: #f3f3f3 !important;
+    font-size: 20px !important;
+  }
+
+  h3 {
+    font-size: 17px !important;
+  }
+
+  i {
+    font-size: 16px;
+  }
+
+  .swiper {
+    cursor: grab;
+    button {
+      cursor: pointer;
+    }
+  }
 }

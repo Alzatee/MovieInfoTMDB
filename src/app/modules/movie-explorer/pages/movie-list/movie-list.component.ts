@@ -48,7 +48,6 @@ export class MovieListComponent implements OnInit {
         this.totalResults = response.total_results;
 
         if (this.movies.length == 0) {
-          console.log('No se encontro la pelicula');
           this.noMovie = '😌 No se encontró la pelicula';
         }
       },

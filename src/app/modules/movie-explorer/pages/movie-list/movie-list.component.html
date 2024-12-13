@@ -4,7 +4,7 @@
         <gml-seeker (searchText)="searchHandleEvent($event)"></gml-seeker>
     </div>
 
-    @if(movies.length > 0) {
+    @if (movies.length > 0) {
         <div class="row">
             <h1>Cartelera</h1>
             <div class="col">
@@ -53,7 +53,9 @@
             </nav>
         </div>
     } @else {
-        <h3 class="text-warning" *ngIf="noMovie"><strong>{{noMovie}}</strong></h3>
+        @if (noMovie) {
+            <h3 class="text-warning"><strong>{{noMovie}}</strong></h3>
+        }
     }
 
 </section>
