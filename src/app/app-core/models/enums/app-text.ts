@@ -4,7 +4,7 @@ export enum AppTexts {
     DetailText = 'DETALLE',
     SynopsisNotFoundText = "No hay sinopsis sobre esta película.",
     ReleaseDateText = "Fecha de estreno",
-    CastText = "Reparto",
+    CastText = "Elenco",
     MovieScheduleText = "Cartelera",
     MoviesText = "Películas",
     ViewText = "Ver"
