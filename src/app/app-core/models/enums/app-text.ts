@@ -1,4 +1,5 @@
 export enum AppTexts {
+    PrincipalTitle = 'Películas GML',
     NavigateToHome = 'VOLVER AL INICIO',
     DetailtText = 'DETALLE',
     SynopsisNotFoundText = "No hay sinopsis sobre esta película.",

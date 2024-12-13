@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { AppTexts } from '@core/models/enums/app-text';
 import { Subject } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 
@@ -9,6 +10,7 @@ import { debounceTime, switchMap } from 'rxjs/operators';
   styleUrl: './seeker.component.scss'
 })
 export class SeekerComponent {
+  appTexts = AppTexts;
   @Output() searchText = new EventEmitter<string>();
   private searchSubject: Subject<string> = new Subject<string>();
   

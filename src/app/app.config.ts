@@ -21,7 +21,6 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([AuthInterceptor]),
       withFetch()
     ),
-    provideClientHydration(), 
     provideAnimationsAsync(),
     importProvidersFrom(BrowserModule)
   ]
