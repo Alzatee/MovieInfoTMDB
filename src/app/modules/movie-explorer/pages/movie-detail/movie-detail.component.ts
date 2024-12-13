@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppTexts } from '@core/models/enums/app-text';
+import { ErrorMessages } from '@core/models/enums/error-messages';
 import { Cast } from '@core/models/interface/credits.interface';
 import { MovieDetails } from '@core/models/interface/movie-details.interface';
 import { TmdbService } from '@core/services/tmdb-service';
@@ -15,6 +16,7 @@ import { combineLatest } from 'rxjs';
   styleUrl: './movie-detail.component.scss'
 })
 export class MovieDetailComponent implements OnInit {
+  errorMessages = ErrorMessages;
   appTexts = AppTexts;
   pelicula?: MovieDetails;
   cast: Cast[] = [];
@@ -35,7 +37,9 @@ export class MovieDetailComponent implements OnInit {
       this.tmdbService.getMovieCredits(id)
     ]).subscribe(([movie, cast]) => {
       if (movie === null || cast === null) {
-        console.error('Error: La pelicula o el reparto no se encontraron');
+        this.utilService.openErrorModal(this.errorMessages.MovieCastError);
+        console.error(this.errorMessages.MovieCastError);
+
         return;
       }
 

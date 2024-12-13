@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppTexts } from '@core/models/enums/app-text';
 import { Movie, MoviesResponse } from '@core/models/interface/movies.interface';
 import { TmdbService } from '@core/services/tmdb-service';
+import { UtilService } from '@shared/util/util.service';
 
 @Component({
   selector: 'gml-movie-list',
@@ -19,7 +20,7 @@ export class MovieListComponent implements OnInit {
   totalPages: number = 1;
   totalResults: number = 0;
 
-  constructor( private tmdbService: TmdbService ) {}
+  constructor( private tmdbService: TmdbService, private utilService: UtilService ) {}
 
   ngOnInit(): void {
     this.loadMovies();
@@ -57,7 +58,8 @@ export class MovieListComponent implements OnInit {
         }
       },
       error: (error) => {
-        const errorMessage = 'Error loading movies: ' + error.message;
+        const errorMessage = 'Error search movies: ' + error.message;
+        this.utilService.openErrorModal(errorMessage);
         console.error(errorMessage);
       },
     });
@@ -73,6 +75,7 @@ export class MovieListComponent implements OnInit {
       },
       error: (error) => {
         const errorMessage = 'Error loading movies: ' + error.message;
+        this.utilService.openErrorModal(errorMessage);
         console.error(errorMessage);
       }
     });
