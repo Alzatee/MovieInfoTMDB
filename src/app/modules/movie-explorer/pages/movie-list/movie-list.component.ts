@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie, MoviesResponse } from '@core/models/interface/movies.interface';
 import { TmdbService } from '@core/services/tmdb-service';
+import { UtilService } from '@shared/util/util.service';
 
 @Component({
   selector: 'gml-movie-list',
@@ -15,22 +16,19 @@ export class MovieListComponent implements OnInit {
   totalPages: number = 1;
   totalResults: number = 0;
 
-  // Cache para almacenar películas cargadas
   loadedPages: Map<number, Movie[]> = new Map();
 
-  constructor(private tmdbService: TmdbService) {}
+  constructor(private tmdbService: TmdbService, private utilService: UtilService) {}
 
   ngOnInit(): void {
     this.loadMovies();
   }
 
   loadMovies(): void {
-    // Verificar si la página ya fue cargada
+    // Verificar si la página ya fue cargada y si está en caché usar dicha página, d elo contrario hacer la consulta.
     if (this.loadedPages.has(this.currentPage)) {
-      // Si la página ya está en el cache, simplemente la usamos
       this.movies = this.loadedPages.get(this.currentPage)!;
     } else {
-      // Si no está en el cache, realizamos la solicitud
       this.tmdbService.getMovieList(this.currentPage).subscribe({
         next: (response: MoviesResponse) => {
           this.movies = response.results;
@@ -52,7 +50,7 @@ export class MovieListComponent implements OnInit {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.loadMovies();
-      this.scrollToTop();
+      this.utilService.scrollToTop();
     }
   }
 
@@ -60,7 +58,7 @@ export class MovieListComponent implements OnInit {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.loadMovies();
-      this.scrollToTop();
+      this.utilService.scrollToTop();
     }
   }
 
@@ -68,28 +66,25 @@ export class MovieListComponent implements OnInit {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.loadMovies();
-      this.scrollToTop();
+      this.utilService.scrollToTop();
     }
-  }
-
-  scrollToTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   getPageRange(): number[] {
     const range: number[] = [];
-    const maxPagesToShow = 5; // Cuántas páginas mostrar
+    const maxPagesToShow = this.currentPage >= 100 ? 3 : 5; // Controlar el número de páginas a mostrar según el tamaño numérico de la página.
+  
     let startPage = Math.max(this.currentPage - Math.floor(maxPagesToShow / 2), 1);
     let endPage = Math.min(startPage + maxPagesToShow - 1, this.totalPages);
-
+  
     if (endPage - startPage < maxPagesToShow - 1) {
       startPage = Math.max(endPage - maxPagesToShow + 1, 1);
     }
-
+  
     for (let i = startPage; i <= endPage; i++) {
       range.push(i);
     }
-
+  
     return range;
   }
 
