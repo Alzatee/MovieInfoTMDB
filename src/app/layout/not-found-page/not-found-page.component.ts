@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { ErrorMessages } from '@core/models/enums/error-messages';
+import { ErrorMessages } from '@core/models/enums/error-messages';
 
 @Component({
   selector: 'AVA-not-found-page',
@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './not-found-page.component.scss'
 })
 export class NotFoundPageComponent {
-  // errorMessages = ErrorMessages;
+  errorMessages = ErrorMessages;
 }
