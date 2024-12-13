@@ -1,15 +1,17 @@
+@import 'variables';
+
 .navbar {
     .form-inline {
         width: 100%;
         input.form-control {
             background-color: transparent;
-            color: #f3f3f3;
+            color: $white-color;
             border: none;
-            border-bottom: 1px solid #f3f3f3;
+            border-bottom: 1px solid $white-color;
             border-radius: 0px;
             font-size: 20px;
             &::placeholder {
-                color: #555;
+                color: $gray-color;
             }
             &:focus {
                 box-shadow: none;
@@ -22,7 +24,7 @@
         .input-container {
             position: relative;
             i {
-                -webkit-text-stroke: 1px #121B24;
+                -webkit-text-stroke: 1px $bg-color;
             }
             .form-control {
                 padding-left: 30px;
@@ -32,10 +34,10 @@
                 top: 50%;
                 left: 10px;
                 transform: translateY(-50%);
-                color: #f3f3f3;
+                color: $white-color;
             }
             .form-control:focus + .search-icon {
-                color: #28a745;
+                color: $green-color;
             }
         }
 

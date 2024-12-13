@@ -1,3 +1,5 @@
+@import 'variables';
+
 .movie-list-container {
   .pagination {
     font-size: 1rem;
@@ -7,27 +9,27 @@
     .page-item .page-link {
       margin: 1px;
       border-radius: 200px;
-      background-color: #007bff;
-      color: white;
-      border: 1px solid #007bff;
+      background-color: $blue-color;
+      color: $white-color;
+      border: 1px solid $blue-color;
       padding: 10px 15px;
       transition: background-color 0.3s ease, border-color 0.3s ease;
     }
 
     .page-item .page-link:hover {
-      background-color: #0056b3;
-      border-color: #0056b3;
+      background-color: $blue-hover-color;
+      border-color: $blue-hover-color;
     }
     
     .page-item.active .page-link {
-      background-color: #28a745;
-      border-color: #28a745;
+      background-color: $green-color;
+      border-color: $green-color;
     }
     
     .page-item.disabled .page-link {
-      background-color: #e0e0e0;
-      border-color: #ccc;
-      color: #aaa;
+      background-color: $disabled-bg-color;
+      border-color: $disabled-border-color;
+      color: $disabled-color;
       cursor: not-allowed;
     }
     .page-item.page-item.disabled {
